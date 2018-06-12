@@ -11,7 +11,7 @@ before_install: # if "install" is overridden
   - yarn install
 env:
   global:
-    - ES_VERSION=6.0.0 
+    - ES_VERSION=6.0.0
     - ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz
   matrix:
     - TEST_DIR=events
@@ -37,6 +37,9 @@ script:
     if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
       yarn run test:system
     fi
+  fi
+  if [[ $TEST_DIR == "support/events-router" ]]; then
+    yarn deploy
   fi
 
 cache:
