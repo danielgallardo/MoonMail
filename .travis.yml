@@ -39,7 +39,13 @@ script:
     #fi
   fi
   if [[ $TEST_DIR == "support/events-router" ]]; then
-    yarn deploy
+    if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
+      if [[ $TRAVIS_BRANCH == "master" ]]; then
+        yarn deploy
+      elif [[ $TRAVIS_BRANCH == "release" ]]; then
+        yarn deploy:prod
+      end
+    end
   fi
 
 cache:
