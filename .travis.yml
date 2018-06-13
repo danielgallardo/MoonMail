@@ -34,9 +34,9 @@ script:
     ./elasticsearch-${ES_VERSION}/bin/elasticsearch &
     wget -q --waitretry=3 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
     yarn run test:integration
-    if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
+    #if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
       # yarn run test:system
-    fi
+    #fi
   fi
   if [[ $TEST_DIR == "support/events-router" ]]; then
     yarn deploy
