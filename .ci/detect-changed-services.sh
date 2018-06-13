@@ -12,7 +12,7 @@ detect_changed_services() {
  for folder in $changed_folders
  do
   echo "Adding $folder to list of services to build"
-  if [[ $folder != ".ci" && $folder != ".git" && $folder != ".templates"]]
+  if [[ $folder != ".ci" && $folder != ".git" && $folder != ".templates" ]]; then
     changed_services+=("$folder")
   fi
  done
