@@ -16,11 +16,19 @@ env:
     - ES_VERSION=6.0.0
     - ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz
 
+stages:
+  - test
+  - name: staging-deploy
+    if: branch = master
+  - name: prod-deploy
+    if: branch = release
+
 jobs:
   include:
     - stage: test
       script:
-      - for service in $changed_services
+      - |
+        for service in $changed_services
         do
           echo "-------------------Running tests for $service---------------------"
           cd $service
@@ -41,7 +49,8 @@ jobs:
     - stage: staging-deploy
       script:
       - auto_deployable_services="support/events-router,"
-      - if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
+      - |
+        if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
           for service in $changed_services
           do
             echo "-------------------Running packaging for $service---------------------"
@@ -54,7 +63,8 @@ jobs:
     - stage: prod-deploy
       script:
       - auto_deployable_services="support/events-router,"
-      - if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
+      - |
+        if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
           for service in $changed_services
           do
             echo "-------------------Running packaging for $service---------------------"
@@ -63,13 +73,6 @@ jobs:
             fi
           done
         fi
-
-stages:
-  - test
-  - name: staging-deploy
-    if: branch = master
-  - name: prod-deploy
-    if: branch = release
 
 cache:
   yarn: true
