@@ -18,9 +18,9 @@ env:
 stages:
   - test
   - name: staging-deploy
-    if: branch = master
+    if: branch = master AND type = push
   - name: prod-deploy
-    if: branch = release
+    if: branch = release AND type = push
 
 jobs:
   include:
@@ -47,7 +47,7 @@ jobs:
         
     - stage: staging-deploy
       script:
-      - auto_deployable_services="support/events-router,"
+      - auto_deployable_services="events-router,"
       - |
         if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
           for service in $changed_services
