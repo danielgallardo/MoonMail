@@ -9,8 +9,7 @@ before_install: # if "install" is overridden
   - sudo apt-get update -qq
   - sudo apt-get install -y -qq yarn
   - yarn install
-  - source .ci/detect-changed-services.sh && detect_changed_services
-  - echo $changed_services
+  - source .ci/detect-changed-services.sh && detect_changed_services && echo $changed_services
 env:
   global:
     - ES_VERSION=6.0.0
