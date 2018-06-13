@@ -5,7 +5,7 @@ detect_changed_services() {
  echo "detecting changed folders for this commit"
 
  # get a list of all the changed folders only
- changed_folders=`git diff --name-only | grep / | awk 'BEGIN {FS="/"} {print $1}' | uniq`
+ changed_folders=`git diff --name-only $TRAVIS_COMMIT_RANGE | grep / | awk 'BEGIN {FS="/"} {print $1}' | uniq`
  echo "changed folders "$changed_folders
 
  changed_services=()
