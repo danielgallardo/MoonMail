@@ -44,8 +44,8 @@ script:
         yarn deploy
       elif [[ $TRAVIS_BRANCH == "release" ]]; then
         yarn deploy:prod
-      end
-    end
+      fi
+    fi
   fi
 
 cache:
