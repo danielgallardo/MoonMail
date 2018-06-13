@@ -11,15 +11,10 @@ detect_changed_services() {
  changed_services=()
  for folder in $changed_folders
  do
-   if [ "$folder" == '_global' ]; then
-     echo "common folder changed, building and publishing all microservices"
-     changed_services=`find . -maxdepth 1 -type d -not -name '_global' -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||'`
-     echo "list of microservice "$changed_services
-     break
-   else
-     echo "Adding $folder to list of services to build"
-     changed_services+=("$folder")
-   fi
+  echo "Adding $folder to list of services to build"
+  if [[ $folder != ".ci" && $folder != ".git" && $folder != ".templates"]]
+    changed_services+=("$folder")
+  fi
  done
 
 #  # Iterate on each service and run the packaging script
