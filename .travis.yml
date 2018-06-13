@@ -38,7 +38,7 @@ jobs:
           cd ..
         done
         
-    - stage: deploy
+    - stage: staging-deploy
       script:
       - auto_deployable_services="support/events-router,"
       - if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
@@ -46,16 +46,30 @@ jobs:
           do
             echo "-------------------Running packaging for $service---------------------"
             if [[ $auto_deployable_services = *"$service"* ]]; then
-              cd $service
-                if [[ $TRAVIS_BRANCH == "master" ]]; then
-                  yarn deploy
-                elif [[ $TRAVIS_BRANCH == "release" ]]; then
-                  yarn deploy:prod
-                fi
-              cd ..
+              cd $service && yarn deploy; cd ..
             fi
           done
         fi
+
+    - stage: prod-deploy
+      script:
+      - auto_deployable_services="support/events-router,"
+      - if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
+          for service in $changed_services
+          do
+            echo "-------------------Running packaging for $service---------------------"
+            if [[ $auto_deployable_services = *"$service"* ]]; then
+              cd $service && yarn deploy:prod; cd ..
+            fi
+          done
+        fi
+
+stages:
+  - test
+  - name: staging-deploy
+    if: branch = master
+  - name: prod-deploy
+    if: branch = release
 
 cache:
   yarn: true
