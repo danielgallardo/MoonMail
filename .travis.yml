@@ -54,7 +54,7 @@ jobs:
           do
             echo "-------------------Running packaging for $service---------------------"
             if [[ $auto_deployable_services = *"$service"* ]]; then
-              cd $service && yarn deploy; cd ..
+              cd $service && yarn install && yarn deploy; cd ..
             fi
           done
         fi
@@ -68,7 +68,7 @@ jobs:
           do
             echo "-------------------Running packaging for $service---------------------"
             if [[ $auto_deployable_services = *"$service"* ]]; then
-              cd $service && yarn deploy:prod; cd ..
+              cd $service && yarn install && yarn deploy:prod; cd ..
             fi
           done
         fi
