@@ -54,7 +54,7 @@ resources:
       Properties:
         Name: ${self:custom.resourcesPrefix}-EventsIngestionStream
         RetentionPeriodHours: 168
-        ShardCount: ${self:custom.config.KINESIS_SHARDS, self.custom.defaultShardCount}
+        ShardCount: ${self:custom.config.KINESIS_SHARDS, self:custom.defaultShardCount}
     EventsDeadLetterQueue:
       Type: "AWS::SQS::Queue"
       Properties:
