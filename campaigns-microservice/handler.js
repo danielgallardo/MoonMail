@@ -16,3 +16,4 @@ export function processEmailNotifications(kinesisStream, context, callback) {
     .catch(err => callback(err));
 }
 
+
