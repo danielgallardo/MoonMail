@@ -75,7 +75,6 @@ playground/
 
 lists-microservice/config.*.json
 campaigns-microservice/config.*.json
-emails-microservice/config.*.json
 template-marketplace/config.*.json
 support/screenshots-service/config.*.json
 

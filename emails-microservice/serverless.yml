@@ -10,7 +10,7 @@ custom:
   resourcesPrefix: ${self:service}-${self:custom.currentStage}
   ssmPath: /moonmail/emails-microservice/${self:custom.currentStage}
   legacyEmailNotificationsTopicArn: ${ssm:${self:custom.ssmPath}/legacy-notifications-topic-arn}
-  config: ${file(./config.${self:custom.currentStage}.json)}
+  config: ${file(./config.${self:custom.currentStage}.json), ""}
   emailNotificationsTopicName: ${self:custom.resourcesPrefix}-EmailNotificationsTopic
   emailNotificationsTopicArn:
     Fn::Join:
@@ -34,15 +34,15 @@ custom:
 provider:
   name: aws
   runtime: nodejs6.10
-  profile: ${opt:profile}
+  profile: ${opt:profile, ""}
   region: ${opt:region}
   timeout: 300
   environment:
-    REGION: ${self:custom.config.REGION}
+    REGION: ${self:provider.region}
     EVENTS_ROUTER_STREAM_NAME:
       Fn::ImportValue: EventsRouterStreamName-${self:custom.currentStage}
-    CLICKS_TABLE: ${self:custom.config.CLICKS_TABLE}
-    OPENS_TABLE: ${self:custom.config.OPENS_TABLE}
+    CLICKS_TABLE: ${self:custom.config.CLICKS_TABLE, env:CLICKS_TABLE}
+    OPENS_TABLE: ${self:custom.config.OPENS_TABLE, env:OPENS_TABLE}
   iamRoleStatements:
     - Effect: "Allow"
       Action:
