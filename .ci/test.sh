@@ -2,7 +2,7 @@
 
 source .ci/detect-changed-services.sh && detect_changed_services && echo $changed_services
 echo "changed_services: $changed_services"
-for service in $1
+for service in $changed_services
 do
   echo "-------------------Running tests for $service---------------------"
   cd $service
