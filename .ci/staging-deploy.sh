@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 auto_deployable_services="events-router,"
 if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
   for service in $changed_services

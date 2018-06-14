@@ -1,5 +1,7 @@
 echo "changed_services: $1"
 for service in $1
+#!/usr/bin/env sh
+
 do
   echo "-------------------Running tests for $service---------------------"
   cd $service
