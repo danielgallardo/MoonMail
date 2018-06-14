@@ -28,10 +28,10 @@ jobs:
       script: ./.ci/test.sh     
     
     - stage: staging-deploy
-      script: ./ci/staging-deploy.sh
+      script: ./.ci/staging-deploy.sh
       
     - stage: prod-deploy
-      script: ./ci/prod-deploy.sh
+      script: ./.ci/prod-deploy.sh
       
 cache:
   yarn: true

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source detect-changed-services.sh && detect_changed_services && echo $changed_services
+source .ci/detect-changed-services.sh && detect_changed_services && echo $changed_services
 echo "changed_services: $changed_services"
 for service in $changed_services
 do
