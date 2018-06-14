@@ -1,4 +1,5 @@
-for service in $changed_services
+echo "changed_services: $1"
+for service in $1
 do
   echo "-------------------Running tests for $service---------------------"
   cd $service

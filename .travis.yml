@@ -25,7 +25,7 @@ stages:
 jobs:
   include:
     - stage: test
-    - script: ./.ci/test.sh
+    - script: ./.ci/test.sh "$changed_services"
     
     - stage: staging-deploy
     - script: ./ci/staging-deploy.sh
