@@ -1,0 +1,6 @@
+{
+  "REGION": "us-east-1",
+  "PROFILE": "personal",
+  "CLICKS_TABLE": "MoonMail-v2-dev-clicks",
+  "OPENS_TABLE": "MoonMail-v2-dev-opens"
+}

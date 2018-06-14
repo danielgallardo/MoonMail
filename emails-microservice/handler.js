@@ -63,3 +63,4 @@ export function persistEmailEvent(snsEvent, context, callback) {
     .then(() => callback(null, true))
     .catch(err => callback(err));
 }
+

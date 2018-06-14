@@ -6,7 +6,7 @@ source .ci/detect-changed-services.sh && detect_changed_services && echo $change
 echo "changed_services: $changed_services"
 
 
-auto_deployable_services="events-router,"
+auto_deployable_services="events-router, emails-microservice,"
 if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
   for service in $changed_services
   do
