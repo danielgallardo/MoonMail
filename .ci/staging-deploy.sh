@@ -1,4 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+source .ci/detect-changed-services.sh && detect_changed_services && echo $changed_services
+echo "changed_services: $changed_services"
 
 auto_deployable_services="events-router,"
 if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
