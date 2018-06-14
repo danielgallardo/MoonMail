@@ -14,7 +14,7 @@ env:
   global:
     - ES_VERSION=6.0.0
     - ES_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz
-
+ 
 stages:
   - test
   - name: staging-deploy

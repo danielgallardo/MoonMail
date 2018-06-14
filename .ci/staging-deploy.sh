@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_DEV
+export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_DEV
 source .ci/detect-changed-services.sh && detect_changed_services && echo $changed_services
 echo "changed_services: $changed_services"
 
