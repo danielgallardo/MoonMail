@@ -1,0 +1,4 @@
+{
+  "REPORTS_TABLE": "MoonMail-v2-prod-reports",
+  "KINESIS_SHARDS": 1
+}

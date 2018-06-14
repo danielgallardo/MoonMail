@@ -74,7 +74,6 @@ playground/
 /.vscode/settings.json
 
 lists-microservice/config.*.json
-campaigns-microservice/config.*.json
 template-marketplace/config.*.json
 support/screenshots-service/config.*.json
 
